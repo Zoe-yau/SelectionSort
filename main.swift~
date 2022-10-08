@@ -1,0 +1,69 @@
+
+// ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩
+// DO NOT ALTER THE TEXT BETWEEN THESE LINES =========={M{E{R{L{I{N{1}N}I}L}R}E}M}=====================================
+let unsortedIntegers = [5, 1, 4, 2, 8]
+// DO NOT ALTER THE TEXT BETWEEN THESE LINES =========={M{E{R{L{I{N{1}N}I}L}R}E}M}=====================================
+// ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧
+
+
+// Add your code below:
+
+//Allows for unsortedintegers to be changed
+var tmpArray = unsortedIntegers
+
+var numOfPasses = 0
+var numOfSwaps = 0
+var totalSwaps = 0
+
+
+func Swap(integers: inout [Int], firstIndex: Int, secondIndex: Int) {
+    let firstInt = integers[firstIndex]
+    let secondInt = integers[secondIndex]
+
+    integers[firstIndex] = secondInt
+    integers[secondIndex] = firstInt
+    
+    numOfSwaps += 1
+     
+}
+
+//First print
+print("Pass: \(numOfPasses), Swaps: \(numOfSwaps)/\(totalSwaps), Array: \(unsortedIntegers)")
+
+
+func sort(integers: inout [Int]) {
+
+    //1 Less than number of items in array
+    for index in 0..<integers.count - 1 {
+        
+        numOfSwaps = 0
+
+        //Variable to find minumum number
+        var minimumIndex = index
+
+        //Ex. Index = 0, +1 = 1, runs through starting at 1 to the rest of # of items in array
+        for swapIndex in index + 1..<integers.count {
+
+            //Finds Minimum number 
+            if integers[swapIndex] < integers[minimumIndex] {
+                minimumIndex = swapIndex
+            }
+
+        }
+
+        //Swaps the minumum number to the front 
+        Swap(integers: &integers, firstIndex: index, secondIndex: minimumIndex)
+
+        totalSwaps += 1
+        numOfPasses += 1
+        
+        print("Pass: \(numOfPasses), Swaps: \(numOfSwaps)/\(totalSwaps), Array: \(integers)")
+
+    }
+
+}
+
+sort(integers: &tmpArray)
+
+
+
